@@ -2,7 +2,7 @@
 
 ## What we're gonna do.
 
-```
+```python
 from mastermind import *
 
 how_display_communicates_with_mastermind:
