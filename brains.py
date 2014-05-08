@@ -5,11 +5,17 @@ This file includes a class for one game.
 
 from random import randint
 
+class GameOver(Exception):
+    def __init__(self, value):
+        self.parameter = value
+    def __str__(self):
+        return repr(self.parameter)
+
 class mastermindGame(object):
 	def play(self, moves):
-		if self.__plays == self.__rows:
-			raise("GameShouldHaveEnded")
-		self.__plays += 1
+		if self.plays == self.__rows:
+			raise GameOver("THE GAME IS OVER. STOP TRYING TO PLAY ALREADY.")
+		self.plays += 1
 		code = list(self.__code)
 
 		w = 0
@@ -33,11 +39,12 @@ class mastermindGame(object):
 			b += 1
 			del code[0:1]
 			del moves[0:1]
-
+		if b == 4:
+			self.plays = self.__rows
+		
 		for c in moves:
-			if c in code:
+			while c in code:
 				w += 1
-				moves.remove(c)
 				code.remove(c)
 
 		return (b, w)
@@ -46,5 +53,6 @@ class mastermindGame(object):
 	def __init__(self, colors, rows):
 		self.__colors	= int(colors)
 		self.__rows		= int(rows)
-		self.__plays	= 0
+		self.plays		= 0
 		self.__code		= (randint(0,self.__colors), randint(0,self.__colors), randint(0,self.__colors), randint(0,self.__colors))
+		print self.__code
