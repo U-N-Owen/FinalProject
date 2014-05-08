@@ -13,9 +13,9 @@ class GameOver(Exception):
 
 class mastermindGame(object):
 	def play(self, moves):
-		if self.plays == self.__rows:
+		if self.__plays == self.__rows:
 			raise GameOver("THE GAME IS OVER. STOP TRYING TO PLAY ALREADY.")
-		self.plays += 1
+		self.__plays += 1
 		code = list(self.__code)
 
 		w = 0
@@ -40,7 +40,7 @@ class mastermindGame(object):
 			del code[0:1]
 			del moves[0:1]
 		if b == 4:
-			self.plays = self.__rows
+			self.__plays = self.__rows
 		
 		for c in moves:
 			while c in code:
@@ -48,11 +48,13 @@ class mastermindGame(object):
 				code.remove(c)
 
 		return (b, w)
-
 		
+	def turns(self):
+		return self.__plays
+
 	def __init__(self, colors, rows):
 		self.__colors	= int(colors)
 		self.__rows		= int(rows)
-		self.plays		= 0
+		self.__plays	= 0
 		self.__code		= (randint(0,self.__colors), randint(0,self.__colors), randint(0,self.__colors), randint(0,self.__colors))
 		print self.__code
