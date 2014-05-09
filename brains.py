@@ -57,4 +57,3 @@ class mastermindGame(object):
 		self.__rows		= int(rows)
 		self.__plays	= 0
 		self.__code		= (randint(0,self.__colors), randint(0,self.__colors), randint(0,self.__colors), randint(0,self.__colors))
-		print self.__code
