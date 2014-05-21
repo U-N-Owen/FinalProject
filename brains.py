@@ -8,6 +8,8 @@ from random import randint
 class GameOver(Exception):
 		'''
 		An exception that I can call when the game has ended.
+		Keep in mind, DON'T use this to figure out when the game ends. Because the interface
+		needs to keep track of stuff by itself. Anyway, enjoy n' stuff.
 		'''
     def __init__(self, value):
         self.parameter = value
