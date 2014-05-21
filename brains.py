@@ -6,13 +6,31 @@ This file includes a class for one game.
 from random import randint
 
 class GameOver(Exception):
+		'''
+		An exception that I can call when the game has ended.
+		'''
     def __init__(self, value):
         self.parameter = value
     def __str__(self):
         return repr(self.parameter)
 
 class mastermindGame(object):
+	'''
+	The main brain for the mastermind game,
+	Trust me, this code is totally not lame.
+	Some other sentence that rhymes with fame.
+	And if you break something, you get the blame.
+	'''
 	def play(self, moves):
+		'''
+		Call it via something like this:
+			myAwesomeMastermindGame.play([7, 5, 9, 2])
+		What it returns, a tuple.
+			(black pegs, white pegs)
+		black pegs are both color AND position correct
+		white pegs are JUST color correct
+		Enjoy.
+		'''
 		if self.__plays == self.__rows:
 			raise GameOver("THE GAME IS OVER. STOP TRYING TO PLAY ALREADY.")
 		self.__plays += 1
@@ -50,6 +68,10 @@ class mastermindGame(object):
 		return (b, w)
 		
 	def turns(self):
+		'''
+		Returns the number of turns that have gone by.
+		Wooeeep!
+		'''
 		return self.__plays
 
 	def __init__(self, colors, rows):
