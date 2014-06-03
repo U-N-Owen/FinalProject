@@ -6,15 +6,15 @@ This file includes a class for one game.
 from random import randint
 
 class GameOver(Exception):
-		'''
-		An exception that I can call when the game has ended.
-		Keep in mind, DON'T use this to figure out when the game ends. Because the interface
-		needs to keep track of stuff by itself. Anyway, enjoy n' stuff.
-		'''
-    def __init__(self, value):
-        self.parameter = value
-    def __str__(self):
-        return repr(self.parameter)
+	'''
+	An exception that I can call when the game has ended.
+	Keep in mind, DON'T use this to figure out when the game ends. Because the interface
+	needs to keep track of stuff by itself. Anyway, enjoy n' stuff.
+	'''
+	def __init__(self, value):
+		self.parameter = value
+	def __str__(self):
+		return repr(self.parameter)
 
 class mastermindGame(object):
 	'''
@@ -23,7 +23,7 @@ class mastermindGame(object):
 	Some other sentence that rhymes with fame.
 	And if you break something, you get the blame.
 	'''
-	def play(self, moves):
+	def play(self, originalMoves):
 		'''
 		Call it via something like this:
 			myAwesomeMastermindGame.play([7, 5, 9, 2])
@@ -37,6 +37,8 @@ class mastermindGame(object):
 			raise GameOver("THE GAME IS OVER. STOP TRYING TO PLAY ALREADY.")
 		self.__plays += 1
 		code = list(self.__code)
+		moves = list(originalMoves) # because python likes to have variables point to the same string
+		                            # this isn't good when we want to manipulate strings
 
 		w = 0
 		b = 0
@@ -75,6 +77,14 @@ class mastermindGame(object):
 		Wooeeep!
 		'''
 		return self.__plays
+
+	def code(self):
+		'''
+		Returns the code because we might need it and stuff.
+		Also effectively ends the game.
+		'''
+		self.__plays = self.__rows
+		return self.__code
 
 	def __init__(self, colors, rows):
 		self.__colors	= int(colors)
