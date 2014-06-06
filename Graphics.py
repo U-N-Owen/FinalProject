@@ -96,7 +96,7 @@ asdf = wx.Frame(None)
 asdf.Show(True)
 
 Start = StartFrame(None)
-Game = Fr()
+Game = Frame()
 Input = InputPanel()
 #Output = OutputPanel
 

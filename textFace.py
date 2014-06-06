@@ -91,7 +91,7 @@ while colors < 2:
 
 stdscr.clear()
 
-game = brains.mastermindGame(colors, turns)
+game = brains.mastermindGame(colors-1, turns)
 
 
 nextY = 4
